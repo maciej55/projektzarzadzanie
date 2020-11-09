@@ -1,0 +1,34 @@
+a.klasaa {
+background-color: red;
+color:white;
+text-decoration:none;
+margin:20px;
+padding: 20px;
+float: right;
+}
+a:hover.klasaa {
+background-color: blue;
+color:yellow;
+text-decoration:none;
+margin:20px;
+padding: 20px;
+float: right;
+}
+
+.zdjecia
+{   
+    width:100%;
+    height:auto;
+    margin: 10px;
+    
+}
+.mselect {
+    color:red;
+}
+
+.eventblok {
+    background-color:green;
+    color:black;
+    margin: 10px;
+    font-size: 16px;
+}
