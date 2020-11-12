@@ -16,39 +16,39 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('sites.Strona_Glowna');
 });
-Route::get('/kontakt','App\Http\Controllers\SitesController@pokazkontakt');
-Route::get('/dodawanie','App\Http\Controllers\SitesController@pokazdodawanie');
-Route::get('/zamowienia','App\Http\Controllers\SitesController@pokazzamowienia');
-Route::get('/klient','App\Http\Controllers\SitesController@pokazklienta');
-Route::get('/galeria','App\Http\Controllers\SitesController@pokazgaleria');
-Route::get('/wydarzenia','App\Http\Controllers\SitesController@Wydarzenia');
+Route::get('/contact','App\Http\Controllers\SitesController@showContactPage');
+Route::get('/product','App\Http\Controllers\SitesController@showProductPage');
+Route::get('/order','App\Http\Controllers\SitesController@showOrderPage');
+Route::get('/customer','App\Http\Controllers\SitesController@showCustomerPage');
+Route::get('/gallery','App\Http\Controllers\SitesController@showGalleryPage');
+Route::get('/event','App\Http\Controllers\SitesController@showEventPage');
 
-Route::post('/savet', [
-    'uses' => 'App\Http\Controllers\SitesController@savet',
-    'as' => 'sites.savet'
-]);
-
-Route::post('/savetu', [
-    'uses' => 'App\Http\Controllers\SitesController@savetu',
-    'as' => 'sites.savetu'
+Route::post('/save1', [
+    'uses' => 'App\Http\Controllers\SitesController@saveProductAdd',
+    'as' => 'sites.saveProductAdd'
 ]);
 
-Route::post('/savetd', [
-    'uses' => 'App\Http\Controllers\SitesController@savetd',
-    'as' => 'sites.savetd'
+Route::post('/save2', [
+    'uses' => 'App\Http\Controllers\SitesController@saveProductUpdate',
+    'as' => 'sites.saveProductUpdate'
 ]);
 
-Route::post('/savek', [
-    'uses' => 'App\Http\Controllers\SitesController@savek',
-    'as' => 'sites.savek'
+Route::post('/save3', [
+    'uses' => 'App\Http\Controllers\SitesController@saveProductDelete',
+    'as' => 'sites.saveProductDelete'
 ]);
-Route::post('/savez', [
-    'uses' => 'App\Http\Controllers\SitesController@savez',
-    'as' => 'sites.savez'
+
+Route::post('/save4', [
+    'uses' => 'App\Http\Controllers\SitesController@saveCustomerAdd',
+    'as' => 'sites.saveCustomerAdd'
 ]);
-Route::post('/savew', [
-    'uses' => 'App\Http\Controllers\SitesController@savew',
-    'as' => 'sites.savew'
+Route::post('/save5', [
+    'uses' => 'App\Http\Controllers\SitesController@saveOrderAdd',
+    'as' => 'sites.saveOrderAdd'
+]);
+Route::post('/save6', [
+    'uses' => 'App\Http\Controllers\SitesController@saveEventAdd',
+    'as' => 'sites.saveEventAdd'
 ]);
 
 Auth::Routes();

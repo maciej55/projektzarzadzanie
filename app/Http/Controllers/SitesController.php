@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Towary;
-use App\Models\Klienci;
-use App\Models\Zamowienia;
-use App\Models\Wydarzenia;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Order;
+use App\Models\Event;
 use DB;
 use App\Http\Controllers\Auth;
 
@@ -19,133 +19,133 @@ class SitesController extends Controller
     }
     
 
-    public function pokazkontakt()
+    public function showContactPage()
     {
         return view('sites.kontakt');
     }
-    public function pokazdodawanie()
+    public function showProductPage()
     {
-        $danetu = DB::table('towaries')->get();
-        return view('sites.Dodawanie_towarow',['danetu' =>$danetu]);
+        $danetu = DB::table('products')->get();
+        return view('sites.towary',['danetu' =>$danetu]);
     }
-    public function pokazzamowienia()
+    public function showOrderPage()
     {
        
-        $danek = DB::table('kliencis')->get();
-        $danet = DB::table('towaries')->get(); 
-        return view('sites.Zamawianie_towarow',['danek' => $danek,'danet'=> $danet]);
+        $danek = DB::table('customers')->get();
+        $danet = DB::table('products')->get(); 
+        return view('sites.zamawianie',['danek' => $danek,'danet'=> $danet]);
     }
-    public function pokazgaleria()
+    public function showGalleryPage ()
     {
-        return view('sites.Galeria');
+        return view('sites.galeria');
     }
-    public function pokazklienta()
+    public function showCustomerPage()
     {
-        return view('sites.Dodawanie_klienta');
+        return view('sites.klient');
     }
-    public function Wydarzenia()
+    public function showEventPage()
     {
-        $eventsdata = DB::table('wydarzenias')->get();
+        $eventsdata = DB::table('orders')->get();
         $eventsdata = $eventsdata->toJson();        
-        return view('sites.Wydarzenia',['eventsdata' => $eventsdata]);
+        return view('sites.wydarzenia',['eventsdata' => $eventsdata]);
     }
-    public function savet(Request $request)
+    public function saveProductAdd(Request $request)
     {
-        if(!empty($_POST['nazwa_towaru']) && !empty($_POST['liczba_towaru']) && !empty($_POST['cena_towaru']))
+        if(!empty($_POST['product_name']) && !empty($_POST['number_of_product']) && !empty($_POST['product_price']))
         {
-        $towary = new Towary();
-        $towary->nazwa_towaru = $request->input('nazwa_towaru');
-        $towary->liczba_towaru = $request->input('liczba_towaru');
-        $towary->cena_towaru = $request->input('cena_towaru');
-        $towary->save();
+        $product = new Product();
+        $product->product_name = $request->input('product_name');
+        $product->number_of_product = $request->input('number_of_product');
+        $product->product_price = $request->input('product_price');
+        $product->save();
         }
                      
-        header("Location: http://127.0.0.1:8000/dodawanie");
+        header("Location: http://127.0.0.1:8000/product");
         die();
         
     }
     
 
-    public function savetu(Request $request)
+    public function saveProductUpdate(Request $request)
     {
-        if(!empty($_POST['nazwa_towaru']) && !empty($_POST['liczba_towaru']) && !empty($_POST['cena_towaru']))
+        if(!empty($_POST['product_name']) && !empty($_POST['number_of_product']) && !empty($_POST['product_price']))
         {
         
-        DB::table('towaries')
-              ->where('id', $request->input('nazwa_towaru'))
-              ->update(['liczba_towaru' => $request->input('liczba_towaru'),
-              'cena_towaru' => $request->input('cena_towaru')]);
+        DB::table('products')
+              ->where('id', $request->input('product_name'))
+              ->update(['number_of_product' => $request->input('number_of_product'),
+              'product_price' => $request->input('product_price')]);
         }
                      
-        header("Location: http://127.0.0.1:8000/dodawanie");
+        header("Location: http://127.0.0.1:8000/product");
         die();
         
     }
 
     
-    public function savetd(Request $request)
+    public function saveProductDelete(Request $request)
     {
-        if(!empty($_POST['nazwa_towaru']) && $_POST['potwierdz'] === "Zgadzam się")
+        if(!empty($_POST['product_name']) && $_POST['agree'] === "Zgadzam się")
         {
                   
-            DB::table('towaries')->where('id',$request->input('nazwa_towaru'))->delete();
+            DB::table('products')->where('id',$request->input('product_name'))->delete();
         }
                      
-        header("Location: http://127.0.0.1:8000/dodawanie");
+        header("Location: http://127.0.0.1:8000/product");
         die();
         
     }
 
-    public function savek(Request $request)
+    public function saveCustomerAdd(Request $request)
     {
-        if(!empty($_POST['imie']) && !empty($_POST['nazwisko']))
+        if(!empty($_POST['first_name']) && !empty($_POST['last_name']))
         {
-        $klienci = new Klienci();
-        $klienci->imie = $request->input('imie');
-        $klienci->nazwisko = $request->input('nazwisko');
-        $klienci->liczba_zamowien = 0;
-        $klienci->save();
+        $customer = new Customer();
+        $customer->first_name = $request->input('first_name');
+        $customer->last_name = $request->input('last_name');
+        $customer->number_of_orders = 0;
+        $customer->save();
         }
                      
-        header("Location: http://127.0.0.1:8000/klient");
+        header("Location: http://127.0.0.1:8000/customer");
         die();
         
     }
 
-    public function savez(Request $request)
+    public function saveOrderAdd(Request $request)
     {     
-        $danez = DB::table('towaries')->where('id',$request->input('id_towaru'))->first();
-        if(!empty($_POST['id_towaru']) && !empty($_POST['id_klienta']) && !empty($_POST['priorytet']) &&  $danez->liczba_towaru >= ($request->input('ilosc')))
+        $danez = DB::table('products')->where('id',$request->input('id_product'))->first();
+        if(!empty($_POST['id_product']) && !empty($_POST['id_customer']) && !empty($_POST['priority']) &&  $danez->number_of_product >= ($request->input('number')))
         {
-        $zamowienia = new Zamowienia();
-        $zamowienia->id_towaru = $request->input('id_towaru');
-        $zamowienia->id_klienta = $request->input('id_klienta');
-        $zamowienia->priorytet = $request->input('priorytet');  
-        $zamowienia->ilosc = $request->input('ilosc');
-        $zamowienia->save();
-        DB::table('towaries')->where('id',$request->input('id_towaru'))->update(['liczba_towaru' => ($danez->liczba_towaru - $request->input('ilosc')) ]);   
-        DB::table('kliencis')->where('id',$request->input('id_klienta'))->increment('liczba_zamowien');
+        $order = new Order();
+        $order->id_product = $request->input('id_product');
+        $order->id_customer = $request->input('id_customer');
+        $order->priority = $request->input('priority');  
+        $order->number = $request->input('number');
+        $order->save();
+        DB::table('products')->where('id',$request->input('id_product'))->update(['number_of_product' => ($danez->number_of_product - $request->input('number')) ]);   
+        DB::table('customers')->where('id',$request->input('id_customer'))->increment('number_of_orders');
        
         }
         
                      
-       header("Location: http://127.0.0.1:8000/zamowienia");
+       header("Location: http://127.0.0.1:8000/order");
        die();
         
     }
-    public function savew(Request $request)
+    public function saveEventAdd(Request $request)
     {
-        if(!empty($_POST['title_wydarzenia']) && !empty($_POST['description_wydarzenia']) && !empty($_POST['date_wydarzenia']))
+        if(!empty($_POST['title']) && !empty($_POST['description']) && !empty($_POST['date_event']))
         {
-        $wydarzenia = new Wydarzenia();
-        $wydarzenia->title = $request->input('title_wydarzenia');
-        $wydarzenia->description = $request->input('description_wydarzenia');
-        $wydarzenia->dateevent = $request->input('date_wydarzenia');
-        $wydarzenia->save();       
+        $event = new Event();
+        $event->title = $request->input('title');
+        $event->description = $request->input('description');
+        $event->date_event = $request->input('date_event');
+        $event->save();       
         }
         
                      
-       header("Location: http://127.0.0.1:8000/wydarzenia");
+       header("Location: http://127.0.0.1:8000/event");
        die();
         
     }

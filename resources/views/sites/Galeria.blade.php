@@ -4,27 +4,27 @@
 <br><br><br><br><br>
 <div class="container">
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjęcie1">
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjęcie 1">
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjęcie2" >
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjęcie 2" >
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjęcie3">
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjęcie 3">
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjecie4">
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjecie 4">
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjęcie5">
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjęcie 5">
 </div>
 
 <div class="col-xs-12 col-sm-6 col-md-4">
-<img class="zdjecia" src="{{URL::asset('/zdj/pies.jpg')}}" alt="zdjęcie6">
+<img class="photos" src="{{URL::asset('/zdj/horse.jpg')}}" alt="zdjęcie 6">
 </div>
 </div>
 @endsection

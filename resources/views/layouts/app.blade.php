@@ -5,32 +5,32 @@
         
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link href="{{ URL::asset('css/wlasnycss.css') }} " rel="stylesheet">
+  <link href="{{ URL::asset('css/stylecss.css') }} " rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 </head>
     <body>  
-        <div id="motywid">
+        
    
        @auth
-       <a class="klasaa" href="/logout">Wyloguj</a>
+       <a class="panel" href="/logout">Wyloguj</a>
        @endauth
-       <a class="klasaa" href="/kontakt">Kontakt</a>
-       <a class="klasaa" href="/galeria">Galeria</a> 
-       <a class="klasaa" href="/klient">Klient</a> 
-       <a class="klasaa" href="/zamowienia">Zamowienia</a>
-       <a class="klasaa" href="/dodawanie">Towary</a>
-       <a class="klasaa" href="/wydarzenia">Wydarzenia</a>  
-       <a class="klasaa" href="/">Strona Główna</a>  
+       <a class="panel" href="/contact">Kontakt</a>
+       <a class="panel" href="/gallery">Galeria</a> 
+       <a class="panel" href="/customer">Klient</a> 
+       <a class="panel" href="/order">Zamowienia</a>
+       <a class="panel" href="/product">Towary</a>
+       <a class="panel" href="/event">Wydarzenia</a>  
+       <a class="panel" href="/">Strona Główna</a>  
        <br><br>
        <div >
            Wybierz motyw:
-           <form name="nazwa">
-       <select class="mselect" name="motyw"  onchange="Zmiana()">
-           <option>jasny</option>
-           <option>ciemny</option>
+           <form name="themeForm">
+       <select class="themeSelect" name="theme"  onchange="changeTheme()">
+           <option value="light">Jasny</option>
+           <option value="dark">Ciemny</option>
        </select>
     </form>
        
@@ -46,11 +46,11 @@
       
 </div>
 </div>
-</div>
+
         <script src="js/app.js"></script>
         <script type="text/javascript">
-        function Zmiana() {
-        if(nazwa.motyw.value === "ciemny"){
+        function changeTheme() {
+        if(themeForm.theme.value === "dark"){
         document.body.style.backgroundColor = "black";
         document.body.style.color = "white";
         }
@@ -59,7 +59,6 @@
         document.body.style.backgroundColor = "white";
         document.body.style.color = "black";
         }
-        
          
          
         }

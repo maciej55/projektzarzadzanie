@@ -1,4 +1,4 @@
-a.klasaa {
+a.panel {
 background-color: red;
 color:white;
 text-decoration:none;
@@ -6,7 +6,7 @@ margin:20px;
 padding: 20px;
 float: right;
 }
-a:hover.klasaa {
+a:hover.panel {
 background-color: blue;
 color:yellow;
 text-decoration:none;
@@ -15,20 +15,27 @@ padding: 20px;
 float: right;
 }
 
-.zdjecia
+.photos
 {   
     width:100%;
     height:auto;
     margin: 10px;
     
 }
-.mselect {
+.themeselect {
     color:red;
 }
 
-.eventblok {
+.eventblock {
     background-color:green;
     color:black;
     margin: 10px;
     font-size: 16px;
+}
+.eventblock p  {
+    text-align: center;
+}
+.homepagephotos {
+    width:400px;
+    height:400px;
 }

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Towary extends Model
+class Event extends Model
 {
-   // use HasFactory;
-   protected $table= 'towaries';
-   public $timestamps = false;
+   //use HasFactory;
+   protected $table= 'events';
+    public $timestamps = false;
 }

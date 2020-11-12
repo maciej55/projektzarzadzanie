@@ -2,17 +2,17 @@
 @section('title','Dodawanie')
 @section('content')
 
-<form action="{{ route('sites.savet') }}" method="post" name="formularz1" >
+<form action="{{ route('sites.saveProductAdd') }}" method="post"  >
 
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
-        Podaj nazwę towaru:<input type="text" class="form-control" name="nazwa_towaru" required>
+        Podaj nazwę towaru:<input type="text" class="form-control" name="product_name" required>
     </div>
     <div class="form-group">
-        Podaj liczbę towaru:<input type="number" class="form-control" name="liczba_towaru" required>
+        Podaj liczbę towaru:<input type="number" class="form-control" name="number_of_product" required>
     </div>
     <div class="form-group">
-        Podaj cenę towaru:<input type="number" class="form-control" name="cena_towaru" step="0.01" required>
+        Podaj cenę towaru:<input type="number" class="form-control" name="product_price" step="0.01" required>
     </div>  
     <div class="form-group">
     
@@ -23,22 +23,22 @@
 
 </form>
 
-<form action="{{ route('sites.savetu') }}" method="post" name="formularz2" >
+<form action="{{ route('sites.saveProductUpdate') }}" method="post" >
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             Wybierz towar:
-            <select name="nazwa_towaru" required>
+            <select name="product_name" required>
             @foreach ($danetu as $x)
-            <option value="{{ $x->id }}"> {{ $x->nazwa_towaru }}</option>
+            <option value="{{ $x->id }}"> {{ $x->product_name }}</option>
             @endforeach
             </select>
         </div>
         <div class="form-group">
-            Podaj liczbę towaru:<input type="number" class="form-control" name="liczba_towaru" required>
+            Podaj liczbę towaru:<input type="number" class="form-control" name="number_of_product" required>
         </div>
         <div class="form-group">
-            Podaj cenę towaru:<input type="number" class="form-control" name="cena_towaru" step="0.01" required>
+            Podaj cenę towaru:<input type="number" class="form-control" name="product_price" step="0.01" required>
         </div>  
         <div class="form-group">
         
@@ -49,19 +49,19 @@
     
     </form>
 
-    <form action="{{ route('sites.savetd') }}" method="post" name="formularz3" >
+    <form action="{{ route('sites.saveProductDelete') }}" method="post" >
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
                 Wybierz towar:
-                <select class="form-control" name="nazwa_towaru" required>
+                <select class="form-control" name="product_name" required>
                 @foreach ($danetu as $x)
-                <option value="{{ $x->id }}"> {{ $x->nazwa_towaru }}</option>
+                <option value="{{ $x->id }}"> {{ $x->product_name }}</option>
                 @endforeach
                 </select>
             </div> 
             <div class="form-group">
-              Wpisz "Zgadzam się" aby potwierdzić<input class="form-control" type="text" name="potwierdz" required>
+              Wpisz "Zgadzam się" aby potwierdzić<input class="form-control" type="text" name="agree" required>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Usuń</button> 
