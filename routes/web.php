@@ -22,6 +22,7 @@ Route::get('/order','App\Http\Controllers\SitesController@showOrderPage');
 Route::get('/customer','App\Http\Controllers\SitesController@showCustomerPage');
 Route::get('/gallery','App\Http\Controllers\SitesController@showGalleryPage');
 Route::get('/event','App\Http\Controllers\SitesController@showEventPage');
+Route::get('/eventchange','App\Http\Controllers\SitesController@showEventChangePage');
 
 Route::post('/save1', [
     'uses' => 'App\Http\Controllers\SitesController@saveProductAdd',
@@ -49,6 +50,10 @@ Route::post('/save5', [
 Route::post('/save6', [
     'uses' => 'App\Http\Controllers\SitesController@saveEventAdd',
     'as' => 'sites.saveEventAdd'
+]);
+Route::post('/save7', [
+    'uses' => 'App\Http\Controllers\SitesController@saveEventDelete',
+    'as' => 'sites.saveEventDelete'
 ]);
 
 Auth::Routes();

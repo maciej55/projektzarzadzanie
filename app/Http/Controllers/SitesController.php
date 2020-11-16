@@ -45,10 +45,18 @@ class SitesController extends Controller
     }
     public function showEventPage()
     {
-        $eventsdata = DB::table('orders')->get();
+        $eventsdata = DB::table('events')->get();
         $eventsdata = $eventsdata->toJson();        
         return view('sites.wydarzenia',['eventsdata' => $eventsdata]);
     }
+
+    public function showEventChangePage()
+    {
+        $events = DB::table('events')->get();      
+        return view('sites.wydarzenia_zmiana',['events' => $events]);
+    }
+
+
     public function saveProductAdd(Request $request)
     {
         if(!empty($_POST['product_name']) && !empty($_POST['number_of_product']) && !empty($_POST['product_price']))
@@ -145,9 +153,18 @@ class SitesController extends Controller
         }
         
                      
-       header("Location: http://127.0.0.1:8000/event");
+       header("Location: http://127.0.0.1:8000/eventchange");
        die();
         
+    }
+    public function saveEventDelete(Request $request)
+    {
+        if(!empty($_POST['id_event']))
+        {                  
+            DB::table('events')->where('id',$request->input('id_event'))->delete();
+        }
+        header("Location: http://127.0.0.1:8000/eventchange");
+       die();
     }
     
    

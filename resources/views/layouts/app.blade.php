@@ -11,7 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
 </head>
-    <body>  
+    <body id="bodyid" >  
         
    
        @auth
@@ -29,8 +29,8 @@
            Wybierz motyw:
            <form name="themeForm">
        <select class="themeSelect" name="theme"  onchange="changeTheme()">
-           <option value="light">Jasny</option>
-           <option value="dark">Ciemny</option>
+           <option value="light" name="l">Jasny</option>
+           <option value="dark" name="d">Ciemny</option>
        </select>
     </form>
        
@@ -47,22 +47,22 @@
 </div>
 </div>
 
-        <script src="js/app.js"></script>
+
+
+        <script src="js/app.js"></script>       
         <script type="text/javascript">
+        const bodyid = document.querySelector('body');
         function changeTheme() {
-        if(themeForm.theme.value === "dark"){
-        document.body.style.backgroundColor = "black";
-        document.body.style.color = "white";
-        }
+        if(themeForm.theme.value === "dark")
+            bodyid.className = "bodyclass2";
+            
         else
-        {
-        document.body.style.backgroundColor = "white";
-        document.body.style.color = "black";
-        }
-         
-         
-        }
-             
+            bodyid.className = "bodyclass1";
+        };
+       
+       
+        
+        
         </script>
     </body>
 </html>
